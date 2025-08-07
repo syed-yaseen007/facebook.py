@@ -1,41 +1,26 @@
-import os
+# 📥 Facebook Video Downloader
 
-from yt_dlp import YoutubeDL
+A simple and efficient tool to download videos from Facebook using video URLs. This project is built for educational purposes and helps users understand how to extract media content from web pages.
 
-# Create downloads folder
+## 🚀 Features
 
-path = os.path.join(os.getcwd(), "downloads") if not os.path.exists(path):
+- ✅ Download videos in HD and SD quality
+- 🔗 Support for public Facebook video URLs
+- 💾 Save videos locally with original titles
+- 🧰 Lightweight and easy to use
+- 🌐 CLI or Web interface (optional)
 
-os.mkdir(path)
+## ⚙️ Technologies Used
 
-link = input("Enter the Facebook video link: ")
+- Python 3.x
+- `requests`
+- `beautifulsoup4`
+- `streamlit` (for optional web UI)
 
-if "facebook.com" not in link:
+## 📦 Installation
 
-print(" Only Facebook links are supported.")
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/syed-yaseen007/facebook-video-downloader.git
+   cd facebook-video-downloader
 
-exit()
-
-ydl_opts ={
-
-'outtmpl': os.path.join(path, '%(title)s.%(ext)s'),
-
-'format': 'best',
-
-'quiet': False,
-
-'noplaylist': True
-
-try:
-
-print(" Downloading...")
-
-with YoutubeDL(ydl_opts) as ydl:
-
-ydl.download([link])
-
-print(" Done! Check the downloads folder.")
-
-except Exception as e:
-
-print(" Error:", e)
